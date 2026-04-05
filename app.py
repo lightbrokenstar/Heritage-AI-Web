@@ -366,7 +366,7 @@ if st.session_state.current_page == "首页视界":
             { img: 'IMG_SRC_5', title: '秦始皇陵及兵马俑', desc: '世界文化遗产，被誉为“世界第八大奇迹”，展现了秦代高超的雕塑艺术与大一统气象。' }
         ];
         
-        //务必替换成你的最新公网网址，注意末尾带斜杠 /
+
         let safeBaseUrl = "https://heritage-ai-web-zb7cjxs74jjewtu45itj4d.streamlit.app/"; 
         if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
             safeBaseUrl = "http://localhost:8501/";
@@ -480,7 +480,7 @@ if st.session_state.current_page == "首页视界":
 elif st.session_state.current_page == "数据大屏":
     import re  #  引入正则引擎来智能提取年份
     
-    # 建立权威的年份与遗产映射字典
+    # 建立年份与遗产映射字典
     heritage_by_year = {
         "1987": ["长城", "明清皇家宫殿", "秦始皇陵及兵马俑坑", "莫高窟", "周口店遗址", "泰山"],
         "1990": ["黄山"], "1992": ["九寨沟", "黄龙风景名胜区", "武陵源风景名胜区"],
