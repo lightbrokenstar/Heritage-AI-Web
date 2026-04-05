@@ -50,6 +50,8 @@ img2 = get_image_base64("image/gugong.jpg", "https://images.unsplash.com/photo-1
 img3 = get_image_base64("image/West_Lake.jpg", "https://images.unsplash.com/photo-1626014903706-5b4372e90f62?w=1200&q=80")
 img4 = get_image_base64("image/TerracotaArmy.jpg", "https://images.unsplash.com/photo-1597953600326-9fba8e1a1293?w=1200&q=80")
 img5 = get_image_base64("image/Lasa.jpg", "https://images.unsplash.com/photo-1583208754160-7ea00f1c305a?w=1200&q=80") 
+# 🔥 新增敦煌莫高窟本地图片解析
+img6 = get_image_base64("image/dunhuang.jpg", "https://images.unsplash.com/photo-1543013313-094191be8606?w=1200&q=80") 
 
 # ================= 维基百科 API 实时接口 =================
 @st.cache_data(ttl=86400) 
@@ -170,7 +172,7 @@ st.markdown("""
     .map-link:hover {color: #8B3E04; font-weight: bold; padding-left: 5px;}
     .map-link::before {content: "• "; color: #C68244;}
     
-    /*  社区帖子网格与详情 CSS */
+    /* 社区帖子网格与详情 CSS */
     .community-header {color: #5C1D16; font-size: 1.5rem; font-weight: 900; margin-top: 0px; margin-bottom: 15px; border-bottom: 2px solid #EAD8C3; padding-bottom: 8px;}
     .post-card {background-color: #FAFAFA; border-radius: 12px; border: 1px solid #EEEEEE; overflow: hidden; margin-bottom: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); transition: transform 0.2s;}
     .post-card:hover {transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.1);}
@@ -352,7 +354,7 @@ if st.session_state.current_page == "首页视界":
                 <h1 id="main-title">长城</h1>
                 <p id="main-desc">世界文化遗产，中华民族的精神象征与智慧结晶，跨越千年的防御工程奇迹。</p>
             </div>
-            <a id="jump-btn" href="#" target="_blank" class="btn-square">查看更多</a>
+            <a id="jump-btn" href="#" target="_top" class="btn-square">查看更多</a>
         </div>
     </div>
     <script>
@@ -364,7 +366,8 @@ if st.session_state.current_page == "首页视界":
             { img: 'IMG_SRC_5', title: '秦始皇陵及兵马俑', desc: '世界文化遗产，被誉为“世界第八大奇迹”，展现了秦代高超的雕塑艺术与大一统气象。' }
         ];
         
-        let safeBaseUrl = "https://heritage-ai-web-zxfkllv4a3ykzjr6gkqhyz.streamlit.app/";
+        //务必替换成你的最新公网网址，注意末尾带斜杠 /
+        let safeBaseUrl = "https://heritage-ai-web-zb7cjxs74jjewtu45itj4d.streamlit.app/"; 
         if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
             safeBaseUrl = "http://localhost:8501/";
         }
@@ -440,9 +443,9 @@ if st.session_state.current_page == "首页视界":
     st.markdown('<div class="section-title" style="margin-top: 40px; margin-bottom: 10px; font-size: 1.8rem;">VR云游</div>', unsafe_allow_html=True)
     
     vr_options = {
-        "紫禁城 (明清皇家宫殿)": {"img": img2, "title": "紫禁城 720° 全景沉浸式云游", "desc": "开启元宇宙视界，漫步太和殿广场", "link": "https://pano.dpm.org.cn/"},
-        "敦煌莫高窟": {"img": "https://images.unsplash.com/photo-1543013313-094191be8606?w=1200&q=80", "title": "数字敦煌 高清壁画全景", "desc": "毫米级数字微距，探索千年佛教艺术", "link": "https://www.e-dunhuang.com/"},
-        "秦始皇陵及兵马俑坑": {"img": img4, "title": "大秦兵马俑 亿像素全景矩阵", "desc": "身临其境，检阅两千年前的地下军阵", "link": "https://baike.baidu.com/museum/qinshihuang"}
+        "紫禁城 (明清皇家宫殿)": {"img": img2, "title": "紫禁城全景沉浸式云游", "desc": "开启元宇宙视界，漫步太和殿广场", "link": "https://pano.dpm.org.cn/"},
+        "敦煌莫高窟": {"img": img6, "title": "数字敦煌 高清壁画全景", "desc": "毫米级数字微距，探索千年佛教艺术", "link": "https://www.e-dunhuang.com/"},
+        "秦始皇陵及兵马俑坑": {"img": img4, "title": "大秦兵马俑", "desc": "身临其境，检阅两千年前的地下军阵", "link": "https://baike.baidu.com/museum/qinshihuang"}
     }
     
     c1, c2 = st.columns([1, 4])
@@ -467,7 +470,7 @@ if st.session_state.current_page == "首页视界":
                 <h2 style="color: white; font-weight: 900; font-size: 2.2rem; letter-spacing: 3px; text-shadow: 2px 2px 8px rgba(0,0,0,0.6); margin-bottom: 10px; text-align: center;">{vr_data["title"]}</h2>
                 <p style="color: #FDF8F5; font-size: 1.15rem; margin-bottom: 35px; text-shadow: 1px 1px 4px rgba(0,0,0,0.5);">{vr_data["desc"]}</p>
                 <a href="{vr_data["link"]}" target="_blank" class="vr-btn">
-                    点击开启全屏 VR 体验
+                    点击开启全屏VR体验
                 </a>
             </div>
         </div>
